@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Section } from '../../components/Utils/Utils'
-import ContactMeForm from "../../components/ContactMeForm/ContactMeForm";
+// import { Section } from '../../components/Utils/Utils'
+import ContactUsForm from "../../components/ContactUsForm/ContactUsForm";
 import './LandingPage.css'
 // import Footer from "./components/footer";
 
@@ -15,7 +15,7 @@ export default class LandingPage extends Component {
             <div>
             <h2 className="landingPageh2">Reimagine< br/> home</h2>
               <p>We’ll help you find a place you’ll love.</p>
-              <div><a className="contact" href="#">Contact Us</a></div>
+              <div><a href="properties" className="contact">Lets see our properties </a></div>
             </div>
         </div>
        
@@ -31,18 +31,18 @@ export default class LandingPage extends Component {
         <div>
              <div className="services">
                 <div className="service-one">
-                <p className="service-icon"><i class="fas fa-door-open"></i></p>
+                <p className="service-icon"><i className="fas fa-door-open"></i></p>
                 <p className="service-title">Buy a home</p>
                 <p className="service-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
                 <div className="service-two">
-                <p className="service-icon"><i class="fas fa-money-bill-wave"></i></p>
+                <p className="service-icon"><i className="fas fa-money-bill-wave"></i></p>
                 <p className="service-title">Sell a home</p>
                 <p className="service-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             
                 </div>
                 <div className="service-three">
-                <p className="service-icon"><i class="fas fa-retweet"></i></p>
+                <p className="service-icon"><i className="fas fa-retweet"></i></p>
                 <p className="service-title">rent a home</p>
                 <p className="service-des">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua frefrfr erg re greg.</p>
               
@@ -66,6 +66,7 @@ export default class LandingPage extends Component {
         <section>
             <h2 className="landingPageh2">Our Agent</h2>
             <div>
+            <p className="ourAgent__icon"><i className="far fa-user-circle"></i></p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. </p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
               </div>
@@ -73,8 +74,8 @@ export default class LandingPage extends Component {
 
 
         <section>
-            <h2 className="landingPageh2">Contact Us</h2>
-            <ContactMeForm />
+            <h2 className="landingPageh2" id="contactUs">Contact Us</h2>
+            <ContactUsForm />
           
         </section>
 

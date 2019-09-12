@@ -21,7 +21,8 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
 }
 
 .hero {
-  background: url("https://loremflickr.com/750/300/house?lock=99");
+  background: url("https://loremflickr.com/750/300/house?random=99");
+  opacity:0.7;
   background-size: 100%;
   height: 700px;
   background-position: center;
@@ -30,6 +31,14 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
    background-repeat: no-repeat;
    background-size: cover;
    border-radius: 7px 7px 0px 0px;
+   height: 100%;   /* ges Hoehe der Seite -> weitere Hoehenangaben werden relativ hierzu ausgewertet */
+overflow: hidden;   /*  hide scrollbars */
+opacity: 1.0;
+-webkit-transition: background 1.5s linear;
+-moz-transition: background 1.5s linear;
+-o-transition: background 1.5s linear;
+-ms-transition: background 1.5s linear;
+transition: background 1.5s linear;
 }
 
 .hero div.head {
@@ -226,6 +235,16 @@ div.services {
 .services p:last-of-type{
   padding: 0px 10px 20px 10px; 
   text-align: left;
+}
+
+.ourAgent__icon {
+    font-size: 3.4rem;
+  padding: 30px 0px 30px 90px;
+  margin: 0px 0px 30px 0px;
+  text-align: left;
+  color: rgb(0, 248, 153);
+  filter: grayscale(0%);
+  border-bottom: 2px solid rgb(0, 248, 99);
 }
 
 

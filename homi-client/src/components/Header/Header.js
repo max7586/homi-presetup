@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TokenService from '../../services/token-service'
 import IdleService from '../../services/idle-service'
 import './Header.css'
@@ -27,7 +27,7 @@ export default class Header extends Component {
       </li>
       <li>
         <Link
-          to='/listMyProperty'>
+          to = '/ListMyPropertyPage' >
           List my property
         </Link>
       </li>
@@ -88,8 +88,8 @@ export default class Header extends Component {
       <nav className='Header'>
         <h1>
           <Link to='/'>
-            <a href="#"><i class="fas fa-home"></i></a>
-            {' '}
+            <i className="fas fa-home"></i>
+            
             Homi
           </Link>
         </h1>

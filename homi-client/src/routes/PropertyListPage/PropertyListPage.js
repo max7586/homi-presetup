@@ -3,9 +3,9 @@ import ThingListContext from '../../contexts/ThingListContext'
 import ThingApiService from '../../services/thing-api-service'
 import { Section } from '../../components/Utils/Utils'
 import ThingListItem from '../../components/ThingListItem/ThingListItem'
-import './ThingListPage.css'
+import './PropertyListPage.css'
 
-export default class ThingListPage extends Component {
+export default class PropertyListPage extends Component {
   static contextType = ThingListContext
 
   componentDidMount() {
@@ -28,7 +28,7 @@ export default class ThingListPage extends Component {
   render() {
     const { error } = this.context
     return (
-      <Section list className='ThingListPage'>
+      <Section list className='PropertyListPage'>
         {error
           ? <p className='red'>There was an error, try again</p>
           : this.renderThings()}

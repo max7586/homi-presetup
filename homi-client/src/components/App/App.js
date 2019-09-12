@@ -4,7 +4,7 @@ import Header from '../Header/Header'
 import PrivateRoute from '../Utils/PrivateRoute'
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import LandingPage from '../../routes/LandingPage/LandingPage'
-import ThingListPage from '../../routes/ThingListPage/ThingListPage'
+import PropertyListPage from '../../routes/PropertyListPage/PropertyListPage'
 import ThingPage from '../../routes/ThingPage/ThingPage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
@@ -13,6 +13,7 @@ import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import IdleService from '../../services/idle-service'
 import   Footer from '../Footer/Footer'
+import ListMyPropertyPage from '../../routes/ListMyPropertyPage/ListMyPropertyPage'
 import './App.css'
 
 class App extends Component {
@@ -96,7 +97,12 @@ class App extends Component {
             <Route
               exact
               path={'/properties'}
-              component={ThingListPage}
+              component={PropertyListPage}
+            />
+            <Route
+              exact
+              path={'/listMyPropertyPage'}
+              component={ListMyPropertyPage}
             />
             <PublicOnlyRoute
               path={'/login'}
@@ -110,10 +116,7 @@ class App extends Component {
               path={'/thing/:thingId'}
               component={ThingPage}
             />
-            <PrivateRoute
-              path={'/listMyProperties'}
-              component={ThingPage}
-            />
+            
             <Route
               component={NotFoundPage}
             />

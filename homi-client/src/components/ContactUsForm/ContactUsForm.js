@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './ContactMeForm.css'
+import './ContactUsForm.css'
 
-class Form extends Component {
+class ContactUsForm extends Component {
   constructor(){
       super();
       this.state = {
@@ -24,7 +24,7 @@ class Form extends Component {
   getEmail = (e) =>{
     let userEmail = e.target.value; 
 
-    if(userEmail.match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)){
+    if(userEmail.match(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)){
       this.setState({
         email: userEmail
     });
@@ -109,4 +109,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default ContactUsForm;

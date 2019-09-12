@@ -12,8 +12,8 @@
 .footer {
   background: linear-gradient(to bottom, #87878a, #f0f1fa, #87878a);
   /* color: #91a3df; */
-  padding: 20px;
-  margin-top: 80px;
+  /* padding: 20px; */
+  /* margin-top: 80px; */
     /* margin-bottom: 80px; */
   display: grid;
   /* grid-template-columns:1fr 1fr 1fr; */
@@ -27,7 +27,7 @@
 -moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
 box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
 border-radius: 7px;
- 
+ /* height: 50%; */
 }
 
 .footer ul {

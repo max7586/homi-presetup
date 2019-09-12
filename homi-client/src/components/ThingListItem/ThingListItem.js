@@ -15,6 +15,7 @@ export default class ThingListItem extends Component {
           <div className='ThingListItem__text'>
             <h2 className='ThingListItem__heading'>{thing.title}</h2>
             <p className='ThingListItem__description'>{truncate(thing.content)}</p>
+            <p className='ThingListItem__userId'>{thing.user_id}</p>
           </div>
 
           <div className='ThingListItem__reviews'>
