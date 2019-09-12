@@ -3,13 +3,13 @@ const xss = require('xss')
 const ReviewsService = {
   getById(db, id) {
     return db
-      .from('thingful_reviews AS rev')
+      .from('homi_reviews AS rev')
       .select(
         'rev.id',
         'rev.rating',
         'rev.text',
         'rev.date_created',
-        'rev.thing_id',
+        'rev.property_id',
         db.raw(
           `row_to_json(
             (SELECT tmp FROM (
@@ -25,7 +25,7 @@ const ReviewsService = {
         )
       )
       .leftJoin(
-        'thingful_users AS usr',
+        'homi_users AS usr',
         'rev.user_id',
         'usr.id',
       )
@@ -36,7 +36,7 @@ const ReviewsService = {
   insertReview(db, newReview) {
     return db
       .insert(newReview)
-      .into('thingful_reviews')
+      .into('homi_reviews')
       .returning('*')
       .then(([review]) => review)
       .then(review =>
@@ -49,7 +49,7 @@ const ReviewsService = {
       id: review.id,
       rating: review.rating,
       text: xss(review.text),
-      thing_id: review.thing_id,
+      property_id: review.property_id,
       date_created: review.date_created,
       user: review.user || {},
     }

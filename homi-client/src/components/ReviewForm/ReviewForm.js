@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import ThingContext from '../../contexts/ThingContext'
-import ThingApiService from '../../services/thing-api-service'
+import PropertyContext from '../../contexts/PropertyContext'
+import PropertyApiService from '../../services/property-api-service'
 import { Button, Textarea } from '../Utils/Utils'
 import './ReviewForm.css'
 
 export default class ReviewForm extends Component {
-  static contextType = ThingContext
+  static contextType = PropertyContext
 
   handleSubmit = ev => {
     ev.preventDefault()
-    const { thing } = this.context
+    const { property } = this.context
     const { text, rating } = ev.target
 
-    ThingApiService.postReview(thing.id, text.value, Number(rating.value))
+    PropertyApiService.postReview(property.id, text.value, Number(rating.value))
       .then(this.context.addReview)
       .then(() => {
         text.value = ''
@@ -39,10 +39,10 @@ export default class ReviewForm extends Component {
         </div>
 
         <div className='select'>
-          <label htmlFor='rating'>Rate this thing!</label>
+          <label htmlFor='rating'>Rate this property!</label>
           <select
             required
-            aria-label='Rate this thing!'
+            aria-label='Rate this property!'
             name='rating'
             id='rating'
           >

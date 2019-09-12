@@ -1,10 +1,10 @@
 const xss = require('xss')
 const Treeize = require('treeize')
 
-const ThingsService = {
-  getAllThings(db) {
+const PropertiesService = {
+  getAllProperties(db) {
     return db
-      .from('thingful_things AS thg')
+      .from('homi_properties AS thg')
       .select(
         'thg.id',
         'thg.title',
@@ -20,12 +20,12 @@ const ThingsService = {
         ),
       )
       .leftJoin(
-        'thingful_reviews AS rev',
+        'homi_reviews AS rev',
         'thg.id',
-        'rev.thing_id',
+        'rev.property_id',
       )
       .leftJoin(
-        'thingful_users AS usr',
+        'homi_users AS usr',
         'thg.user_id',
         'usr.id',
       )
@@ -33,14 +33,14 @@ const ThingsService = {
   },
 
   getById(db, id) {
-    return ThingsService.getAllThings(db)
+    return PropertiesService.getAllProperties(db)
       .where('thg.id', id)
       .first()
   },
 
-  getReviewsForThing(db, thing_id) {
+  getReviewsForProperty(db, property_id) {
     return db
-      .from('thingful_reviews AS rev')
+      .from('homi_reviews AS rev')
       .select(
         'rev.id',
         'rev.rating',
@@ -48,44 +48,44 @@ const ThingsService = {
         'rev.date_created',
         ...userFields,
       )
-      .where('rev.thing_id', thing_id)
+      .where('rev.property_id', property_id)
       .leftJoin(
-        'thingful_users AS usr',
+        'homi_users AS usr',
         'rev.user_id',
         'usr.id',
       )
       .groupBy('rev.id', 'usr.id')
   },
 
-  serializeThings(things) {
-    return things.map(this.serializeThing)
+  serializeProperties(properties) {
+    return properties.map(this.serializeProperty)
   },
 
-  serializeThing(thing) {
-    const thingTree = new Treeize()
+  serializeProperty(property) {
+    const propertyTree = new Treeize()
 
     // Some light hackiness to allow for the fact that `treeize`
     // only accepts arrays of objects, and we want to use a single
     // object.
-    const thingData = thingTree.grow([ thing ]).getData()[0]
+    const propertyData = propertyTree.grow([ property ]).getData()[0]
 
     return {
-      id: thingData.id,
-      title: xss(thingData.title),
-      content: xss(thingData.content),
-      date_created: thingData.date_created,
-      image: thingData.image,
-      user: thingData.user || {},
-      number_of_reviews: Number(thingData.number_of_reviews) || 0,
-      average_review_rating: Math.round(thingData.average_review_rating) || 0,
+      id: propertyData.id,
+      title: xss(propertyData.title),
+      content: xss(propertyData.content),
+      date_created: propertyData.date_created,
+      image: propertyData.image,
+      user: propertyData.user || {},
+      number_of_reviews: Number(propertyData.number_of_reviews) || 0,
+      average_review_rating: Math.round(propertyData.average_review_rating) || 0,
     }
   },
 
-  serializeThingReviews(reviews) {
-    return reviews.map(this.serializeThingReview)
+  serializePropertyReviews(reviews) {
+    return reviews.map(this.serializePropertyReview)
   },
 
-  serializeThingReview(review) {
+  serializePropertyReview(review) {
     const reviewTree = new Treeize()
 
     // Some light hackiness to allow for the fact that `treeize`
@@ -96,7 +96,7 @@ const ThingsService = {
     return {
       id: reviewData.id,
       rating: reviewData.rating,
-      thing_id: reviewData.thing_id,
+      property_id: reviewData.property_id,
       text: xss(reviewData.text),
       user: reviewData.user || {},
       date_created: reviewData.date_created,
@@ -113,4 +113,4 @@ const userFields = [
   'usr.date_modified AS user:date_modified',
 ]
 
-module.exports = ThingsService
+module.exports = PropertiesService

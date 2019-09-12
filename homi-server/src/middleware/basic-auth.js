@@ -23,7 +23,7 @@ function requireAuth(req, res, next) {
      req.app.get('db'),
      tokenUserName
    )
-  //  req.app.get('db')('thingful_users')
+  //  req.app.get('db')('homi_users')
   //   .where({ user_name: tokenUserName })
   //   .first()
     .then(user => {

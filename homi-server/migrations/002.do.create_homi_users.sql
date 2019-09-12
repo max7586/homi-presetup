@@ -1,4 +1,4 @@
-CREATE TABLE thingful_users (
+CREATE TABLE homi_users (
   id SERIAL PRIMARY KEY,
   user_name TEXT NOT NULL UNIQUE,
   full_name TEXT NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE thingful_users (
   date_modified TIMESTAMP
 );
 
-ALTER TABLE thingful_things
+ALTER TABLE homi_properties
   ADD COLUMN
-    user_id INTEGER REFERENCES thingful_users(id)
+    user_id INTEGER REFERENCES homi_users(id)
     ON DELETE SET NULL;

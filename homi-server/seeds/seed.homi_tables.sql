@@ -1,12 +1,12 @@
 BEGIN;
 
 TRUNCATE
-  thingful_reviews,
-  thingful_things,
-  thingful_users
+  homi_reviews,
+  homi_properties,
+  homi_users
   RESTART IDENTITY CASCADE;
 
-INSERT INTO thingful_users (user_name, full_name, nickname, password)
+INSERT INTO homi_users (user_name, full_name, nickname, password)
 VALUES
   ('dunder', 'Dunder Mifflin', null, '$2a$12$lHK6LVpc15/ZROZcKU00QeiD.RyYq5dVlV/9m4kKYbGibkRc5l4Ne'),
   ('b.deboop', 'Bodeep Deboop', 'Bo', '$2a$12$VQ5HgWm34QQK2rJyLc0lmu59cy2jcZiV6U1.bE8rBBnC9VxDf/YQO'),
@@ -15,7 +15,7 @@ VALUES
   ('lexlor', 'Alex Taylor', 'Lex', '$2a$12$Hq9pfcWWvnzZ8x8HqJotveRHLD13ceS7DDbrs18LpK6rfj4iftNw.'),
   ('wippy', 'Ping Won In', 'Ping', '$2a$12$ntGOlTLG5nEXYgDVqk4bPejBoJP65HfH2JEMc1JBpXaVjXo5RsTUu');
 
-INSERT INTO thingful_things (title, image, user_id, content)
+INSERT INTO homi_properties (title, image, user_id, content)
 VALUES
   ('452 main street, manchester, CT, 06040', 'https://loremflickr.com/750/300/house?random=1', 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore incididunt ut labore labore incididunt ut labore.
 1560 Sq-Ft 6 Bedrooms 2 Garage 5 Bathroom. FOR SALE.'),
@@ -38,14 +38,14 @@ VALUES
   ( '149 main street, bolton, CT, 06010', 'https://loremflickr.com/750/300/house?random=10', 4, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore incididunt ut labore labore incididunt ut labore.
 1560 Sq-Ft 6 Bedrooms 2 Garage 5 Bathroom.FOR SALE');
 
-INSERT INTO thingful_reviews (
+INSERT INTO homi_reviews (
   text,
   rating,
-  thing_id,
+  property_id,
   user_id
 ) VALUES
   (
-    'This thing is amazing.',
+    'This property is amazing.',
     4,
     1,
     2
@@ -57,13 +57,13 @@ INSERT INTO thingful_reviews (
     3
   ),
   (
-    'All the other reviewers are obviously insane, but this thing is actually pretty amazing.',
+    'All the other reviewers are obviously insane, but this property is actually pretty amazing.',
     5,
     1,
     4
   ),
   (
-    'When life gives you lemons, trade them for this thing.',
+    'When life gives you lemons, trade them for this property.',
     4,
     1,
     5
@@ -111,7 +111,7 @@ INSERT INTO thingful_reviews (
     5
   ),
   (
-    'There are some better things. There are also some worse things.',
+    'There are some better properties. There are also some worse properties.',
     3,
     7,
     1
@@ -123,7 +123,7 @@ INSERT INTO thingful_reviews (
     2
   ),
   (
-    'It does not say this on the label, but this thing can be used to summon rain on the spring equinox with the proper incantation.',
+    'It does not say this on the label, but this property can be used to summon rain on the spring equinox with the proper incantation.',
     3,
     7,
     3

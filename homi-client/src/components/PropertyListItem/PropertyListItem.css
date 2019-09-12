@@ -1,4 +1,4 @@
-.ThingListItem {
+.PropertyListItem {
   background: none;
   display: flex;
   flex-direction: column;
@@ -11,16 +11,16 @@
   border-radius: 10px;
 }
 
-.ThingListItem:hover {
+.PropertyListItem:hover {
   cursor: pointer;
 }
 
-.ThingListItem,
-.ThingListItem:visited {
+.PropertyListItem,
+.PropertyListItem:visited {
   color: #555;
 }
 
-.ThingListItem__image {
+.PropertyListItem__image {
   height: 250px;
   width: 275px;
   border-radius: 10px 10px 0 0;
@@ -28,7 +28,7 @@
   background-position: 50% 50%;
 }
 
-.ThingListItem__details {
+.PropertyListItem__details {
   padding: 10px;
   display: flex;
   flex: 1;
@@ -37,17 +37,17 @@
   width: 275px;
 }
 
-.ThingListItem__details h2 {
+.PropertyListItem__details h2 {
   margin: 0;
 }
 
-.ThingListItem__details .ThingStarRating {
+.PropertyListItem__details .PropertyStarRating {
   padding: 5px 0;
   text-align: center;
   opacity: 0.85;
 }
 
-.ThingListItem__details span {
+.PropertyListItem__details span {
   display: block;
   text-align: center;
   opacity: 0.5;

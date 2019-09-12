@@ -6,7 +6,7 @@ const helpers = require('./test-helpers')
 describe('Users Endpoints', function() {
   let db
 
-  const { testUsers } = helpers.makeThingsFixtures()
+  const { testUsers } = helpers.makePropertiesFixtures()
   const testUser = testUsers[0]
 
   before('make knex instance', () => {
@@ -154,7 +154,7 @@ describe('Users Endpoints', function() {
        })
         .expect(res =>
    db
-     .from('thingful_users')
+     .from('homi_users')
      .select('*')
      .where({ id: res.body.id })
      .first()

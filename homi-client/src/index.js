@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import * as serviceWorker from './serviceWorker'
-import { ThingListProvider } from './contexts/ThingListContext'
-import { ThingProvider } from './contexts/ThingContext'
+import { PropertyListProvider } from './contexts/PropertyListContext'
+import { PropertyProvider } from './contexts/PropertyContext'
 import App from './components/App/App'
 import './index.css'
 
@@ -37,11 +37,11 @@ library.add(
 
 ReactDOM.render(
   <BrowserRouter>
-    <ThingListProvider>
-      <ThingProvider>
+    <PropertyListProvider>
+      <PropertyProvider>
         <App />
-      </ThingProvider>
-    </ThingListProvider>
+      </PropertyProvider>
+    </PropertyListProvider>
   </BrowserRouter>,
   document.getElementById('root')
 )

@@ -1,4 +1,4 @@
-CREATE TABLE thingful_things (
+CREATE TABLE homi_properties (
   id SERIAL PRIMARY KEY,
   image TEXT,
   title TEXT NOT NULL,

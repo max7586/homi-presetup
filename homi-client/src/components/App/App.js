@@ -5,7 +5,7 @@ import PrivateRoute from '../Utils/PrivateRoute'
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import LandingPage from '../../routes/LandingPage/LandingPage'
 import PropertyListPage from '../../routes/PropertyListPage/PropertyListPage'
-import ThingPage from '../../routes/ThingPage/ThingPage'
+import PropertyPage from '../../routes/PropertyPage/PropertyPage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
@@ -35,7 +35,7 @@ class App extends Component {
     if (TokenService.hasAuthToken()) {
       /*
         tell the idle service to register event listeners
-        the event listeners are fired when a user does something, e.g. move their mouse
+        the event listeners are fired when a user does someproperty, e.g. move their mouse
         if the user doesn't trigger one of these event listeners,
           the idleCallback (logout) will be invoked
       */
@@ -113,8 +113,8 @@ class App extends Component {
               component={RegistrationPage}
             />
             <PrivateRoute
-              path={'/thing/:thingId'}
-              component={ThingPage}
+              path={'/property/:propertyId'}
+              component={PropertyPage}
             />
             
             <Route

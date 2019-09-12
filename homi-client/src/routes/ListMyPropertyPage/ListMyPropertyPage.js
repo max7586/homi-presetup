@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Section } from '../../components/Utils/Utils'
-import ListMyPropertyForm from '../../components/ListMyPropertiesForm/ListMyPropertiesForm'
+import ListMyPropertyForm from '../../components/ListMyPropertyForm/ListMyPropertyForm'
 
 export default class ListMyPropertyPage extends Component {
   static defaultProps = {

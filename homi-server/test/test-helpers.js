@@ -38,11 +38,11 @@ function makeUsersArray() {
   ]
 }
 
-function makeThingsArray(users) {
+function makePropertiesArray(users) {
   return [
     {
       id: 1,
-      title: 'First test thing!',
+      title: 'First test property!',
       image: 'http://placehold.it/500x500',
       user_id: users[0].id,
       date_created: '2029-01-22T16:28:32.615Z',
@@ -50,7 +50,7 @@ function makeThingsArray(users) {
     },
     {
       id: 2,
-      title: 'Second test thing!',
+      title: 'Second test property!',
       image: 'http://placehold.it/500x500',
       user_id: users[1].id,
       date_created: '2029-01-22T16:28:32.615Z',
@@ -58,7 +58,7 @@ function makeThingsArray(users) {
     },
     {
       id: 3,
-      title: 'Third test thing!',
+      title: 'Third test property!',
       image: 'http://placehold.it/500x500',
       user_id: users[2].id,
       date_created: '2029-01-22T16:28:32.615Z',
@@ -66,7 +66,7 @@ function makeThingsArray(users) {
     },
     {
       id: 4,
-      title: 'Fourth test thing!',
+      title: 'Fourth test property!',
       image: 'http://placehold.it/500x500',
       user_id: users[3].id,
       date_created: '2029-01-22T16:28:32.615Z',
@@ -75,13 +75,13 @@ function makeThingsArray(users) {
   ]
 }
 
-function makeReviewsArray(users, things) {
+function makeReviewsArray(users, properties) {
   return [
     {
       id: 1,
       rating: 2,
       text: 'First test review!',
-      thing_id: things[0].id,
+      property_id: properties[0].id,
       user_id: users[0].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -89,7 +89,7 @@ function makeReviewsArray(users, things) {
       id: 2,
       rating: 3,
       text: 'Second test review!',
-      thing_id: things[0].id,
+      property_id: properties[0].id,
       user_id: users[1].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -97,7 +97,7 @@ function makeReviewsArray(users, things) {
       id: 3,
       rating: 1,
       text: 'Third test review!',
-      thing_id: things[0].id,
+      property_id: properties[0].id,
       user_id: users[2].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -105,7 +105,7 @@ function makeReviewsArray(users, things) {
       id: 4,
       rating: 5,
       text: 'Fourth test review!',
-      thing_id: things[0].id,
+      property_id: properties[0].id,
       user_id: users[3].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -113,7 +113,7 @@ function makeReviewsArray(users, things) {
       id: 5,
       rating: 1,
       text: 'Fifth test review!',
-      thing_id: things[things.length - 1].id,
+      property_id: properties[properties.length - 1].id,
       user_id: users[0].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -121,7 +121,7 @@ function makeReviewsArray(users, things) {
       id: 6,
       rating: 2,
       text: 'Sixth test review!',
-      thing_id: things[things.length - 1].id,
+      property_id: properties[properties.length - 1].id,
       user_id: users[2].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -129,7 +129,7 @@ function makeReviewsArray(users, things) {
       id: 7,
       rating: 5,
       text: 'Seventh test review!',
-      thing_id: things[3].id,
+      property_id: properties[3].id,
       user_id: users[0].id,
       date_created: '2029-01-22T16:28:32.615Z',
     },
@@ -141,29 +141,29 @@ function seedUsers(db, users){
     ...user,
     password: bcrypt.hashSync(user.password, 1)
   }))
-  return db.into('thingful_users').insert(preppedUsers)
+  return db.into('homi_users').insert(preppedUsers)
   .then(() =>
-    db.raw(`SELECT setval('thingful_users_id_seq', ?)`, [users[users.length - 1].id],
+    db.raw(`SELECT setval('homi_users_id_seq', ?)`, [users[users.length - 1].id],
     )
   )
 }
 
-function makeExpectedThing(users, thing, reviews=[]) {
+function makeExpectedProperty(users, property, reviews=[]) {
   const user = users
-    .find(user => user.id === thing.user_id)
+    .find(user => user.id === property.user_id)
 
-  const thingReviews = reviews
-    .filter(review => review.thing_id === thing.id)
+  const propertyReviews = reviews
+    .filter(review => review.property_id === property.id)
 
-  const number_of_reviews = thingReviews.length
-  const average_review_rating = calculateAverageReviewRating(thingReviews)
+  const number_of_reviews = propertyReviews.length
+  const average_review_rating = calculateAverageReviewRating(propertyReviews)
 
   return {
-    id: thing.id,
-    image: thing.image,
-    title: thing.title,
-    content: thing.content,
-    date_created: thing.date_created,
+    id: property.id,
+    image: property.image,
+    title: property.title,
+    content: property.content,
+    date_created: property.date_created,
     number_of_reviews,
     average_review_rating,
     user: {
@@ -186,9 +186,9 @@ function calculateAverageReviewRating(reviews) {
   return Math.round(sum / reviews.length)
 }
 
-function makeExpectedThingReviews(users, thingId, reviews) {
+function makeExpectedPropertyReviews(users, propertyId, reviews) {
   const expectedReviews = reviews
-    .filter(review => review.thing_id === thingId)
+    .filter(review => review.property_id === propertyId)
 
   return expectedReviews.map(review => {
     const reviewUser = users.find(user => user.id === review.user_id)
@@ -208,8 +208,8 @@ function makeExpectedThingReviews(users, thingId, reviews) {
   })
 }
 
-function makeMaliciousThing(user) {
-  const maliciousThing = {
+function makeMaliciousProperty(user) {
+  const maliciousProperty = {
     id: 911,
     image: 'http://placehold.it/500x500',
     date_created: new Date().toISOString(),
@@ -217,41 +217,41 @@ function makeMaliciousThing(user) {
     user_id: user.id,
     content: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
   }
-  const expectedThing = {
-    ...makeExpectedThing([user], maliciousThing),
+  const expectedProperty = {
+    ...makeExpectedProperty([user], maliciousProperty),
     title: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
     content: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
   }
   return {
-    maliciousThing,
-    expectedThing,
+    maliciousProperty,
+    expectedProperty,
   }
 }
 
-function makeThingsFixtures() {
+function makePropertiesFixtures() {
   const testUsers = makeUsersArray()
-  const testThings = makeThingsArray(testUsers)
-  const testReviews = makeReviewsArray(testUsers, testThings)
-  return { testUsers, testThings, testReviews }
+  const testProperties = makePropertiesArray(testUsers)
+  const testReviews = makeReviewsArray(testUsers, testProperties)
+  return { testUsers, testProperties, testReviews }
 }
 
 function cleanTables(db) {
   return db.transaction(trx =>
     trx.raw(
       `TRUNCATE
-        thingful_things,
-        thingful_users,
-        thingful_reviews
+        homi_properties,
+        homi_users,
+        homi_reviews
       `
     )
     .then(() =>
       Promise.all([
-        trx.raw(`ALTER SEQUENCE thingful_things_id_seq minvalue 0 START WITH 1`),
-        trx.raw(`ALTER SEQUENCE thingful_users_id_seq minvalue 0 START WITH 1`),
-        trx.raw(`ALTER SEQUENCE thingful_reviews_id_seq minvalue 0 START WITH 1`),
-        trx.raw(`SELECT setval('thingful_things_id_seq', 0)`),
-        trx.raw(`SELECT setval('thingful_users_id_seq', 0)`),
-        trx.raw(`SELECT setval('thingful_reviews_id_seq', 0)`),
+        trx.raw(`ALTER SEQUENCE homi_properties_id_seq minvalue 0 START WITH 1`),
+        trx.raw(`ALTER SEQUENCE homi_users_id_seq minvalue 0 START WITH 1`),
+        trx.raw(`ALTER SEQUENCE homi_reviews_id_seq minvalue 0 START WITH 1`),
+        trx.raw(`SELECT setval('homi_properties_id_seq', 0)`),
+        trx.raw(`SELECT setval('homi_users_id_seq', 0)`),
+        trx.raw(`SELECT setval('homi_reviews_id_seq', 0)`),
       ])
     )
   )
@@ -262,31 +262,31 @@ function seedUsers(db, users) {
     ...user,
     password: bcrypt.hashSync(user.password, 1)
   }))
-  return db.into('thingful_users').insert(preppedUsers)
+  return db.into('homi_users').insert(preppedUsers)
     .then(() =>
       db.raw(
-        `SELECT setval('thingful_users_id_seq', ?)`,
+        `SELECT setval('homi_users_id_seq', ?)`,
         [users[users.length - 1].id],
       )
     )
 }
 
 
-function seedThingsTables(db, users, things, reviews=[]) {
+function seedPropertiesTables(db, users, properties, reviews=[]) {
 
   return db.transaction(async trx => {
     await seedUsers(trx, users)
-    await trx.into('thingful_things').insert(things)
+    await trx.into('homi_properties').insert(properties)
 
     await trx.raw(
-      `SELECT setval('thingful_things_id_seq', ?)`,
-      [things[things.length - 1].id],
+      `SELECT setval('homi_properties_id_seq', ?)`,
+      [properties[properties.length - 1].id],
     )
 
     if (reviews.length) {
-      await trx.into('thingful_reviews').insert(reviews)
+      await trx.into('homi_reviews').insert(reviews)
       await trx.raw(
-        `SELECT setval('thingful_reviews_id_seq', ?)`,
+        `SELECT setval('homi_reviews_id_seq', ?)`,
         [reviews[reviews.length - 1].id],
       )
     }
@@ -294,15 +294,15 @@ function seedThingsTables(db, users, things, reviews=[]) {
 }
 
 
-function seedMaliciousThing(db, user, thing) {
+function seedMaliciousProperty(db, user, property) {
   //return db
-    //.into('thingful_users')
+    //.into('homi_users')
     //.insert([user])
   return seedUsers(db, [user])
     .then(() =>
       db
-        .into('thingful_things')
-        .insert([thing])
+        .into('homi_properties')
+        .insert([property])
     )
 }
 
@@ -316,16 +316,16 @@ function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
 
 module.exports = {
   makeUsersArray,
-  makeThingsArray,
-  makeExpectedThing,
-  makeExpectedThingReviews,
-  makeMaliciousThing,
+  makePropertiesArray,
+  makeExpectedProperty,
+  makeExpectedPropertyReviews,
+  makeMaliciousProperty,
   makeReviewsArray,
 
-  makeThingsFixtures,
+  makePropertiesFixtures,
   cleanTables,
-  seedThingsTables,
-  seedMaliciousThing,
+  seedPropertiesTables,
+  seedMaliciousProperty,
   makeAuthHeader,
   seedUsers,
 }

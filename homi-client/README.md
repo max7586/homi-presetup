@@ -1,4 +1,4 @@
-# Thingful Client
+# homi Client
 
 ## Setting Up
 

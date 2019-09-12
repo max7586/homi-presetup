@@ -1,9 +1,9 @@
 import config from '../config';
-import TokenService from '../services/token-service';
+import TokenService from './token-service';
 
-const ThingApiService = {
-  getThings() {
-    return fetch(`${config.API_ENDPOINT}/things`, {
+const PropertyApiService = {
+  getProperties() {
+    return fetch(`${config.API_ENDPOINT}/properties`, {
       headers: {
         
       },
@@ -14,8 +14,8 @@ const ThingApiService = {
           : res.json()
       )
   },
-  getThing(thingId) {
-    return fetch(`${config.API_ENDPOINT}/things/${thingId}`, {
+  getProperty(propertyId) {
+    return fetch(`${config.API_ENDPOINT}/properties/${propertyId}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
@@ -26,8 +26,8 @@ const ThingApiService = {
           : res.json()
       )
   },
-  getThingReviews(thingId) {
-    return fetch(`${config.API_ENDPOINT}/things/${thingId}/reviews`, {
+  getPropertyReviews(propertyId) {
+    return fetch(`${config.API_ENDPOINT}/properties/${propertyId}/reviews`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
@@ -38,7 +38,7 @@ const ThingApiService = {
           : res.json()
       )
   },
-  postReview(thingId, text, rating) {
+  postReview(propertyId, text, rating) {
     return fetch(`${config.API_ENDPOINT}/reviews`, {
       method: 'POST',
       headers: {
@@ -46,7 +46,7 @@ const ThingApiService = {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        thing_id: thingId,
+        property_id: propertyId,
         rating,
         text,
       }),
@@ -59,4 +59,4 @@ const ThingApiService = {
   }
 }
 
-export default ThingApiService
+export default PropertyApiService

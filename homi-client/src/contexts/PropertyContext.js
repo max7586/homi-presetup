@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 
-export const nullThing = {
+export const nullProperty = {
   author: {},
   tags: [],
 }
 
-const ThingContext = React.createContext({
-  thing: nullThing,
+const PropertyContext = React.createContext({
+  property: nullProperty,
   reviews: [],
   error: null,
   setError: () => {},
   clearError: () => { },
-  setThing: () => {},
-  clearThing: () => {},
+  setProperty: () => {},
+  clearProperty: () => {},
   setReviews: () => {},
   addReview: () => {},
 })
 
-export default ThingContext
+export default PropertyContext
 
-export class ThingProvider extends Component {
+export class PropertyProvider extends Component {
   state = {
-    thing: nullThing,
+    property: nullProperty,
     error: null,
   };
 
@@ -34,16 +34,16 @@ export class ThingProvider extends Component {
     this.setState({ error: null })
   }
 
-  setThing = thing => {
-    this.setState({ thing })
+  setProperty = property => {
+    this.setState({ property })
   }
 
   setReviews = reviews => {
     this.setState({ reviews })
   }
 
-  clearThing = () => {
-    this.setThing(nullThing)
+  clearProperty = () => {
+    this.setProperty(nullProperty)
     this.setReviews([])
   }
 
@@ -56,20 +56,20 @@ export class ThingProvider extends Component {
 
   render() {
     const value = {
-      thing: this.state.thing,
+      property: this.state.property,
       reviews: this.state.reviews,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
-      setThing: this.setThing,
+      setProperty: this.setProperty,
       setReviews: this.setReviews,
-      clearThing: this.clearThing,
+      clearProperty: this.clearProperty,
       addReview: this.addReview,
     }
     return (
-      <ThingContext.Provider value={value}>
+      <PropertyContext.Provider value={value}>
         {this.props.children}
-      </ThingContext.Provider>
+      </PropertyContext.Provider>
     )
   }
 }

@@ -38,14 +38,14 @@ export default class ListMyPropertyForm extends Component {
     const { error } = this.state
     return (
       <form
-        className='ListMyPropertiesForm'
+        className='ListMyPropertyForm'
         onSubmit={this.handleSubmit}
       >
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
         </div>
         <div className='Address'>
-          <label htmlFor='ListMyPropertiesForm__address'>
+          <label htmlFor='ListMyPropertyForm__address'>
             Address <Required />
           </label>
           <Input
@@ -53,11 +53,11 @@ export default class ListMyPropertyForm extends Component {
             placeholder='101 street, city, state, ZIP code'
             type='text'
             required
-            id='ListMyPropertiesForm__address'>
+            id='ListMyPropertyForm__address'>
           </Input>
         </div>
         <div className='img'>
-          <label htmlFor='ListMyPropertiesForm__img'>
+          <label htmlFor='ListMyPropertyForm__img'>
             Image URL <Required />
           </label>
           <Input
@@ -65,11 +65,11 @@ export default class ListMyPropertyForm extends Component {
             placeholder= 'https://loremflickr.com.......'
             type='text'
             required
-            id='ListMyPropertiesForm__img'>
+            id='ListMyPropertyForm__img'>
           </Input>
         </div>
         <div className='description'>
-          <label htmlFor='ListMyPropertiesForm__description'>
+          <label htmlFor='ListMyPropertyForm__description'>
             Description <Required />
           </label>
           <Input
@@ -77,18 +77,18 @@ export default class ListMyPropertyForm extends Component {
             placeholder='Detail about house, 560 Sq-Ft 6 Bedrooms 2 Garage 5 Bathroom. FOR RENT'
             type='description'
             required
-            id='ListMyPropertiesForm__description'>
+            id='ListMyPropertyForm__description'>
           </Input>
         </div>
         <div className='nick_name'>
-          <label htmlFor='ListMyPropertiesForm__nick_name'>
+          <label htmlFor='ListMyPropertyForm__nick_name'>
             Nickname
           </label>
           <Input
             name='nick_name'
             type='text'
             required
-            id='ListMyPropertiesForm__nick_name'>
+            id='ListMyPropertyForm__nick_name'>
           </Input>
         </div>
         <Button type='submit'>
